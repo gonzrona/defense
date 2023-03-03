@@ -1,0 +1,152 @@
+
+\newcommand{\twoDimensionalDomainInclusionGrid}{
+\begin{center}\begin{tikzpicture}[scale=.75]
+
+\def\w{8}; \def\s{\w*.5};
+
+\definecolor{sky}{RGB}{115,215,255};
+\definecolor{dirt}{RGB}{155,118,83};
+\def\op{.65}
+
+\draw [very thick,fill=sky,fill opacity=\op] (0,0)--(0,-\w)--(\w,-\w)--(\w,0)--(0,0);
+\draw [very thick,fill=white] (0,-\s)--(0,-\w)--(\w,-\w)--(\w,-\s)--(0,-\s);
+\draw [very thick,fill=dirt,fill opacity=\op] (0,-\s)--(0,-\w)--(\w,-\w)--(\w,-\s)--(0,-\s);
+
+\def\Ny{11};\def\hy{\w/\Ny};
+\foreach \j in {1,...,\Ny}{
+\draw[very thick, dashed] (0,-\j*\hy)--(\w,-\j*\hy);
+}
+
+\def\x{4}; \def\y{-5} \def\r{.4}
+\definecolor{mine}{RGB}{80,80,80};
+\draw [very thick,fill=mine] (\x-\r,\y+\r)--(\x-\r,\y-\r)--(\x+\r,\y-\r)--(\x+\r,\y+\r)--(\x-\r,\y+\r);
+
+\def\o{.5};
+\node[anchor=west] () at (\w+\o,-5*\hy) {\large $\mathbf{\ns}$};
+\draw[very thick,->] (\w+\o,-5*\hy)--(\w+\o/5,-5*\hy);
+\node[anchor=west] () at (\w+\o,-8*\hy) {\large $\mathbf{\nr}$};
+\draw[very thick,->] (\w+\o,-8*\hy)--(\w+\o/5,-8*\hy);
+
+\node[anchor=west] () at (\w+\o,-\hy) {\large $\mathbf{1}$};
+\node[anchor=west] () at (\w+\o,-\Ny*\hy+\hy) {\large $\mathbf{\nz}$};
+\draw[very thick,->] (\w+\o,-\hy)--(\w+\o/5,-\hy);
+\draw[very thick,->] (\w+\o,-\Ny*\hy+\hy)--(\w+\o/5,-\Ny*\hy+\hy);
+
+\node[] () at (-\o*1.75,-\w/4) {\large $\mathbf{k_a}$};
+\node[] () at (-\o*3.5,-\w*.625 + .1) {\large $\mathbf{k(x,y,z)}$};
+\node[] () at (-\o*1.75,-\w*.875) {\large $\mathbf{k_g}$};
+
+%%Center
+\node[anchor=west,text=white] () at (\w+\o,-\w*.625) {\large $\mathbf{k(x,y,z)}$};
+
+
+\def\nm{8*\hy};
+\def\b{.04};
+\def\amp{6pt};
+\def\ra{4pt};
+
+\draw [very thick, decorate, decoration = {brace,raise=\ra,amplitude=\amp}] (0,-\s+\b) --  (0,0);
+\draw [very thick, decorate, decoration = {brace,raise=\ra,amplitude=\amp}] (0,-\nm+\b)--(0,-\s-\b);
+\draw [very thick, decorate, decoration = {brace,raise=\ra,amplitude=\amp}] (0,-\w)--(0,-\nm-\b);
+
+\end{tikzpicture}\end{center}
+}
+
+
+
+\newcommand{\twoDimensionalDomainVariableKyGrid}{
+\begin{center}\begin{tikzpicture}[scale=.7]
+
+\def\w{8}; \def\s{\w*.5};
+
+\definecolor{sky}{RGB}{115,215,255};
+\definecolor{dirt}{RGB}{155,118,83};
+\def\op{.65}
+\draw [very thick,fill=sky,fill opacity=\op] (0,0)--(0,-\w)--(\w,-\w)--(\w,0)--(0,0);
+\draw [very thick,fill=white] (0,-\s)--(0,-\w)--(\w,-\w)--(\w,-\s)--(0,-\s);
+\draw [very thick,fill=dirt,fill opacity=\op] (0,-\s)--(0,-\w)--(\w,-\w)--(\w,-\s)--(0,-\s);
+
+\def\Ny{11};\def\hy{\w/\Ny};
+\foreach \j in {1,...,\Ny}{
+\draw[very thick, dashed] (0,-\j*\hy)--(\w,-\j*\hy);
+}
+
+\def\o{.5};
+\node[anchor=west] () at (\w+\o,-5*\hy) {\large $\mathbf{\ns}$};
+\node[anchor=west] () at (\w+\o,-6*\hy) {\large $\mathbf{\ns + 1}$};
+\node[anchor=east,text=white] () at (-\o,-6*\hy) {\large $\mathbf{\ns + 1}$};
+\draw[very thick,->] (\w+\o,-5*\hy)--(\w+\o/5,-5*\hy);
+\draw[very thick,->] (\w+\o,-6*\hy)--(\w+\o/5,-6*\hy);
+
+\node[anchor=west] () at (\w+\o,-\hy) {\large $\mathbf{1}$};
+\node[anchor=west] () at (\w+\o,-\Ny*\hy+\hy) {\large $\mathbf{\nz}$};
+\draw[very thick,->] (\w+\o,-\hy)--(\w+\o/5,-\hy);
+\draw[very thick,->] (\w+\o,-\Ny*\hy+\hy)--(\w+\o/5,-\Ny*\hy+\hy);
+%\draw[very thick,->] (-\o*1.65,-\hy-\o)--(-\o*1.65,-\Ny*\hy+\hy+\o);
+
+\node[] () at (-\o*2,-\w/4) {\large $\mathbf{k_a}$};
+\node[] () at (-\o*2,-\w*.75) {\large $\mathbf{k_g}$};
+
+\draw [very thick, decorate, decoration = {brace,raise=5pt,amplitude=5pt}] (0,-\s+.05) --  (0,0);
+\draw [very thick, decorate, decoration = {brace,raise=5pt,amplitude=5pt}] (0,-\w)--(0,-\s-.05);
+
+\end{tikzpicture}\end{center}
+}
+
+
+
+\newcommand{\twoDimensionalDomainVariableKyGridSolver}{
+\begin{center}\begin{tikzpicture}[scale=.7]
+
+\def\w{8}; \def\s{\w*.5};
+
+\definecolor{sky}{RGB}{115,215,255};
+\definecolor{dirt}{RGB}{155,118,83};
+\def\op{.65}
+\draw [very thick,fill=sky,fill opacity=\op] (0,0)--(0,-\w)--(\w,-\w)--(\w,0)--(0,0);
+\draw [very thick,fill=white] (0,-\s)--(0,-\w)--(\w,-\w)--(\w,-\s)--(0,-\s);
+\draw [very thick,fill=dirt,fill opacity=\op] (0,-\s)--(0,-\w)--(\w,-\w)--(\w,-\s)--(0,-\s);
+
+\def\Ny{11};\def\hy{\w/\Ny};
+\foreach \j in {1,...,\Ny}{
+\draw[very thick, dashed] (0,-\j*\hy)--(\w,-\j*\hy);
+}
+
+\def\o{.4};
+\node[anchor=west] () at (\w+\o,-5*\hy) {\large $\mathbf{\ns}$};
+\node[anchor=west] () at (\w+\o,-6*\hy) {\large $\mathbf{\ns + 1}$};
+\node[anchor=east,text=white] () at (-\o,-6*\hy) {\large $\mathbf{\ns + 1}$};
+\draw[very thick,->] (\w+\o,-5*\hy)--(\w+\o/5,-5*\hy);
+\draw[very thick,->] (\w+\o,-6*\hy)--(\w+\o/5,-6*\hy);
+
+\node[anchor=west] () at (\w+\o,-\hy) {\large $\mathbf{1}$};
+\node[anchor=west] () at (\w+\o,-\Ny*\hy+\hy) {\large $\mathbf{\nz}$};
+\draw[very thick,->] (\w+\o,-\hy)--(\w+\o/5,-\hy);
+\draw[very thick,->] (\w+\o,-\Ny*\hy+\hy)--(\w+\o/5,-\Ny*\hy+\hy);
+%\draw[very thick,->] (-\o*1.65,-\hy-\o)--(-\o*1.65,-\Ny*\hy+\hy+\o);
+
+%\node[] () at (-\o*2,-\w/4) { ${k_a}$};
+%\node[] () at (-\o*2,-\w*.75) { ${k_g}$};
+%
+%\draw [thick, decorate, decoration = {brace,raise=5pt,amplitude=5pt}] (0,-\s+.05) --  (0,0);
+%\draw [thick, decorate, decoration = {brace,raise=5pt,amplitude=5pt}] (0,-\w)--(0,-\s-.05);
+
+\def\ms{.7};
+\def\o{.7};
+\node[] () at (-\o*7,-\w/4) {\large $\mathbf{D_a},\mathbf{P_a}$};
+\draw[very thick,->] (-\o*5,0)--(-\o*5,-\s+\ms);
+
+\node[] () at (-\o*7,-3*\w/4) {\large $\mathbf{D_g},\mathbf{P_g}$};
+\draw[very thick,->] (-\o*5,-\w)--(-\o*5,-\s-\ms);
+
+
+\node[] () at (-\o*2.5,-\w/4) {\large $\vec{w}$};
+\draw[very thick,<-] (-\o*1.5,0)--(-\o*1.5,-\s+\ms);
+
+\node[] () at (-\o*2.5,-3*\w/4) {\large $\vec{w}$};
+\draw[very thick,<-] (-\o*1.5,-\w)--(-\o*1.5,-\s-\ms);
+
+\node[] () at (-\o*3.25,-\w/2) {\large $\mathbf{A_s\vec{w}_s = \vec{f}_s}$};
+
+
+\end{tikzpicture}\end{center}}

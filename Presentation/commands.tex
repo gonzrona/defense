@@ -1,0 +1,218 @@
+
+
+
+%%%%%%%%%%%%% OTHER %%%%%%%%%%%%%
+
+\newcommand\numbereqn{\addtocounter{equation}{1}\tag{\theequation}}
+
+\let\oldproofname=\proofname
+\renewcommand{\proofname}{\rm\bf{\oldproofname}} %makes proof bold rather than italic
+\renewcommand{\qedsymbol}{$\blacksquare$}  %makes \qed solid
+
+\newcommand{\bndCol}{cyan!60} %boundary color
+
+\setcounter{MaxMatrixCols}{20} %extend largest matrix
+
+\newcommand{\threedim}{three-di\-mensional\xspace}
+\newcommand{\somm}{Sommer\-feld-like\xspace}
+\newcommand{\Somm}{Sommer\-feld-Like\xspace}
+\newcommand{\helm}{Helm\-holtz\xspace}
+\newcommand{\nman}{Neu\-mann\xspace}
+\renewcommand{\quote}[1]{``#1"}
+
+
+%%%%%%%%%%%%% FORMATTING %%%%%%%%%%%%%
+\newcommand{\tab}{\hspace{6mm}}
+\newcommand{\vtab}{\vspace{6mm}}
+\newcommand{\eqntab}{\hspace{5mm}} %space for continuing equation on next line
+\renewcommand{\l}{\left}\renewcommand{\r}{\right}
+\newcommand{\matrixSpacing}{1.65}
+
+%%%%%%%%%%%%% HELPFULL MATH SYMBOLS %%%%%%%%%%%%%
+
+\newcommand{\bigo}[1]{\mathcal{O}\left(#1\right)}
+
+\newcommand{\grad}{\ensuremath{\nabla}}
+\newcommand{\gradh}{\ensuremath{\grad_h}}
+\newcommand{\gradp}{\ensuremath{\gradh^{1/2}}}
+\newcommand{\laplace}{\ensuremath{\Delta}}
+\newcommand{\laplaceh}{\ensuremath{\laplace_h}}
+
+\renewcommand{\vec}[1]{\mathbf{#1}}
+\renewcommand{\bar}[1]{\overline{#1}}
+\renewcommand{\hat}[1]{\widehat{#1}}
+\newcommand{\norm}[1]{||#1||}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\I}{\mathcal{I}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\kron}{\otimes}
+
+\newcommand{\bbm}{\begin{bmatrix}}
+\newcommand{\ebm}{\end{bmatrix}}
+
+\newcommand{\DST}{\textit{DST}\xspace}
+\newcommand{\dst}{\DST}
+\newcommand{\DCT}{\textit{DCT}\xspace}
+\newcommand{\dct}{\DCT}
+\newcommand{\DFT}{\textit{DFT}\xspace}
+\newcommand{\dft}{\DFT}
+\newcommand{\FFT}{\textit{FFT}\xspace}
+\newcommand{\fft}{\FFT}
+\newcommand{\RHS}{\textit{RHS}\xspace}
+\newcommand{\rhs}{\RHS}
+\newcommand{\LU}{\textit{LU}\xspace}
+\newcommand{\lu}{\LU}
+
+\newcommand{\nx}{\ensuremath{{N_x}}}
+\newcommand{\Nx}{\ensuremath{{N_x}}}
+\newcommand{\ny}{\ensuremath{{N_y}}}
+\newcommand{\Ny}{\ensuremath{{N_y}}}
+\newcommand{\nz}{\ensuremath{{N_z}}}
+\newcommand{\Nz}{\ensuremath{{N_z}}}
+\newcommand{\Ns}{\ensuremath{{N_s}}}
+\newcommand{\ns}{\ensuremath{{N_s}}}
+\newcommand{\nr}{\ensuremath{{N_r}}}
+\newcommand{\Nr}{\ensuremath{{N_r}}}
+
+\newcommand{\hx}{{\ensuremath{h_x}}}
+\newcommand{\hy}{{\ensuremath{h_y}}}
+\newcommand{\hz}{{\ensuremath{h_z}}}
+\newcommand{\hxs}{{\ensuremath{h_x^2}}}
+\newcommand{\hys}{{\ensuremath{h_y^2}}}
+\newcommand{\hzs}{{\ensuremath{h_z^2}}}
+
+\newcommand{\ind}{\ensuremath{{i,j,l}}}
+\newcommand{\indt}{\ensuremath{{i,j}}}
+\newcommand{\indv}[1]{{i:N_x,j:N_y,#1}}
+
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%% PARTIAL DERIVATIVES %%%%%%%%%%%%%
+
+%\newcommand{\pd}[1]{ \ensuremath{\dfrac{\partial}{\partial #1} }  }
+ 
+\newcounter{total}
+\newcounter{xc}
+\newcounter{yc}
+\newcounter{zc}
+ \newcommand{\pd}[1]{ 
+\readlist*\var{#1}
+\setsepchar{,}
+\setcounter{total}{0}
+\setcounter{xc}{0}
+\setcounter{yc}{0}
+\setcounter{zc}{0}
+\foreachitem\v\in\var{ \ifthenelse{\equal{\v}{x}}{\stepcounter{xc}}{\ifthenelse{\equal{\v}{y}}{\stepcounter{yc}}{\stepcounter{zc}}} \stepcounter{total} }
+\ensuremath{ \dfrac{
+\partial^{\ifthenelse{\arabic{total}>1}{\arabic{total}}{}}
+}{
+\ifthenelse {\arabic{xc}>1}{\partial x^\arabic{xc}}{\ifthenelse {\equal{\arabic{xc}}{1}}{\partial x }{}}
+\ifthenelse {\arabic{yc}>1}{\partial y^\arabic{yc}}{\ifthenelse {\equal{\arabic{yc}}{1}}{\partial y }{}}
+\ifthenelse {\arabic{zc}>1}{\partial z^\arabic{zc}}{\ifthenelse {\equal{\arabic{zc}}{1}}{\partial z }{}}
+}}
+ }
+
+
+%%%%%%%%% CENTRAL DIFFERENCES %%%%%%%%%%%%%
+%\fdiff{u}{i}{j}{x}
+\newcommand{\fdiffo}[1]{ \ensuremath{\delta_#1}}
+\newcommand{\fdiffsmall}[4]{\ensuremath{
+    \IfEqCase{#4}{%
+        {x}{\dfrac{#1_{#2+1,#3}-#1_{#2-1,#3}}{2h_x}}
+        {y}{\dfrac{#1_{#2,#3+1}-#1_{#2,#3-1}}{2h_y}}
+    }[\PackageError{tree}{Undefined option to tree: #4}{}]
+}}
+\newcommand{\fdifffull}[5]{\ensuremath{
+    \IfEqCase{#5}{%
+        {x}{\dfrac{#1_{#2+1,#3,#4}-#1_{#2-1,#3,#4}}{2h_x}}
+        {y}{\dfrac{#1_{#2,#3+1,#4}-#1_{#2,#3-1,#4}}{2h_y}}
+        {z}{\dfrac{#1_{#2,#3,#4+1}-#1_{#2,#3,#4-1}}{2h_z}}
+    }[\PackageError{tree}{Undefined option to tree: #5}{}]
+}}
+%\fdiff[l]{u}{i}{j}{x}
+\newcommand{\fdiff}[5][]{ \ensuremath{
+\IfEqCase{#1}{
+{}{\fdiffsmall{#2}{#3}{#4}{#5}}
+{l}{\fdifffull{#2}{#3}{#4}{#1}{#5}}
+}[\PackageError{tree}{Undefined option to tree: #1}{}]
+} }
+
+
+\newcommand{\sdiffo}[1]{ \ensuremath{\delta_#1^2}}
+\newcommand{\sdiffsmall}[4]{\ensuremath{
+    \IfEqCase{#4}{
+        {x}{\dfrac{#1_{#2-1,#3}-2#1_{#2,#3}+#1_{#2+1,#3}}{h_x^2}}
+        {y}{\dfrac{#1_{#2,#3-1}-2#1_{#2,#3}+#1_{#2,#3+1}}{h_y^2}}
+    }[\PackageError{tree}{Undefined option to tree: #4}{}]
+}}
+\newcommand{\sdifffull}[5]{\ensuremath{
+    \IfEqCase{#5}{
+        {x}{\dfrac{#1_{#2-1,#3,#4}-2#1_{#2,#3,#4}+#1_{#2+1,#3,#4}}{h_x^2}}
+        {y}{\dfrac{#1_{#2,#3-1,#4}-2#1_{#2,#3,#4}+#1_{#2,#3+1,#4}}{h_y^2}}
+        {z}{\dfrac{#1_{#2,#3,#4-1}-2#1_{#2,#3,#4}+#1_{#2,#3,#4+1}}{h_z^2}}
+    }[\PackageError{tree}{Undefined option to tree: #5}{}]
+}}
+\newcommand{\sdiff}[5][]{ \ensuremath{
+\IfEqCase{#1}{
+{l}{\sdifffull{#2}{#3}{#4}{#1}{#5}}
+{}{\sdiffsmall{#2}{#3}{#4}{#5}}
+}[\PackageError{tree}{Undefined option to tree: #1}{}]
+} }
+
+
+\newcommand{\sdiffsmalln}[4]{\ensuremath{
+    \IfEqCase{#4}{
+        {x}{#1_{#2-1,#3}-2#1_{#2,#3}+#1_{#2+1,#3}}
+        {y}{#1_{#2,#3-1}-2#1_{#2,#3}+#1_{#2,#3+1}}
+    }[\PackageError{tree}{Undefined option to tree: #4}{}]
+}}
+\newcommand{\sdifffulln}[5]{\ensuremath{
+    \IfEqCase{#5}{
+        {x}{#1_{#2-1,#3,#4}-2#1_{#2,#3,#4}+#1_{#2+1,#3,#4}}
+        {y}{#1_{#2,#3-1,#4}-2#1_{#2,#3,#4}+#1_{#2,#3+1,#4}}
+        {z}{#1_{#2,#3,#4-1}-2#1_{#2,#3,#4}+#1_{#2,#3,#4+1}}
+    }[\PackageError{tree}{Undefined option to tree: #5}{}]
+}}
+\newcommand{\sdiffn}[5][]{ \ensuremath{
+\IfEqCase{#1}{
+{l}{\sdifffulln{#2}{#3}{#4}{#1}{#5}}
+{}{\sdiffsmalln{#2}{#3}{#4}{#5}}
+}[\PackageError{tree}{Undefined option to tree: #1}{}]
+} }
+
+
+
+\newcommand{\fdiffsmalln}[4]{\ensuremath{
+    \IfEqCase{#4}{%
+        {x}{#1_{#2+1,#3}-#1_{#2-1,#3}}
+        {y}{#1_{#2,#3+1}-#1_{#2,#3-1}}
+    }[\PackageError{tree}{Undefined option to tree: #4}{}]
+}}
+\newcommand{\fdifffulln}[5]{\ensuremath{
+    \IfEqCase{#5}{%
+        {x}{#1_{#2+1,#3,#4}-#1_{#2-1,#3,#4}}
+        {y}{#1_{#2,#3+1,#4}-#1_{#2,#3-1,#4}}
+        {z}{#1_{#2,#3,#4+1}-#1_{#2,#3,#4-1}}
+    }[\PackageError{tree}{Undefined option to tree: #5}{}]
+}}
+%\fdiff[l]{u}{i}{j}{x}
+\newcommand{\fdiffn}[5][]{ \ensuremath{
+\IfEqCase{#1}{
+{}{\fdiffsmalln{#2}{#3}{#4}{#5}}
+{l}{\fdifffulln{#2}{#3}{#4}{#1}{#5}}
+}[\PackageError{tree}{Undefined option to tree: #1}{}]
+} }
+
+
+
+
+
